@@ -1,0 +1,22 @@
+{
+  "purpose": "Connect matched CPU performance contrasts to derivative combinations on the same frozen policies.",
+  "status": "Locally specified before these derivative outcomes; reuse of inspected training seeds; diagnostic, not independent confirmation.",
+  "seeds": [701,702,703,704,705,706],
+  "steps": [0,50,200,1000],
+  "modes": ["single","full"],
+  "network": {"width":64,"depth":3},
+  "meshes": {"fine":[121,91,360,241],"finest":[161,121,480,321]},
+  "policy_grid": [41,81,81],
+  "time_points": [0.3,0.6,1.2,1.8,2.4,3.0],
+  "core_y": [-0.6,-0.5,-0.4,-0.3,-0.2,-0.1,0.0,0.1,0.2,0.3,0.4,0.5,0.6],
+  "core_z": [-0.3,-0.2,-0.1,0.0,0.1,0.2,0.3],
+  "model_source": "configs/confirmatory_study.json",
+  "single_source": "results/npi_evaluation_controls_20260929/cpu_single/seed{seed}/step_{step}.pt",
+  "full_source": "results/continuous_boundary_followup_20260929/frozen/seed{seed}/hard/step_{step}.pt",
+  "generator": "bounded positive wide stencil; backward Euler; nearest discrete action with lower index at ties",
+  "reference_policy": "CPU greedy of shared initial function, tabulated once and shared by both evaluation designs and reference grids",
+  "mask": "For each seed, common intersection over both meshes, both representations and all four steps: positive curvatures and interior greedy actions. Also report all-point clipped action error and mask counts.",
+  "statistics": "Three quotient component RMS values, all cross terms, combined error, combined/component RMS ratio, update RMS and eta/S RMS. Report every seed; no expected direction imposed.",
+  "scope": "Deterministic finite-reference diagnostics. Core error norms do not identify CE changes or the optimizer mechanism. Mesh differences are sensitivity measures, not bounds. No new training or CE-based selection.",
+  "threads": 2
+}

@@ -1,0 +1,18 @@
+{
+  "study": "fixed_protocol_long_budget_and_ablations",
+  "created": "2026-09-25",
+  "interpretation": "Paired fixed-protocol comparison, not a comparison of optimally tuned algorithms. All failures and seeds retained. Test seeds differ from development pilots.",
+  "model": {"horizon": 3.0, "phi1": 0.8, "kappa": 0.5, "sigma_z": 0.35,
+    "gamma1": 2.0, "gamma2": 5.0, "mixture": 0.3, "rho": -0.7,
+    "qmin": -0.8, "qmax": 0.8, "zmin": -1.5, "zmax": 1.5},
+  "training": {"width": 64, "depth": 3, "batch_size": 1024, "lr": 0.001,
+    "outer_iterations": 50, "steps_per_outer": 200, "resample_every": 50,
+    "validation_points": 2048, "shape_weight": 1.0, "device": "cuda", "dtype": "float32",
+    "lr_schedule": "cosine", "min_lr": 0.00001, "fused_adam": true,
+    "save_steps": [2000, 4000, 10000], "status": "fixed-protocol study; final checkpoint; no reference-based selection"},
+  "variants": [
+    {"name": "main", "seeds": [101,102,103,104,105,106,107,108,109,110], "methods": ["pinn","pi"]},
+    {"name": "no_shape", "seeds": [101,102,103], "methods": ["pinn","pi"], "training": {"shape_weight": 0.0}},
+    {"name": "long_inner", "seeds": [101,102,103], "methods": ["pi"], "training": {"outer_iterations": 10, "steps_per_outer": 1000}}
+  ]
+}

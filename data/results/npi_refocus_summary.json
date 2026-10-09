@@ -1,0 +1,188 @@
+{
+  "status": "complete",
+  "new_fixed_evaluations": 3,
+  "new_walltime_runs": 18,
+  "policy_bank_audits": 72,
+  "fixed_long_vs_short": [
+    {
+      "seed": 101,
+      "gain_bp": -2.846973285393073,
+      "low": -5.123230299551501,
+      "high": -0.5707162712346452
+    },
+    {
+      "seed": 102,
+      "gain_bp": -5.057510018535716,
+      "low": -7.931145535592603,
+      "high": -2.1838745014788286
+    },
+    {
+      "seed": 103,
+      "gain_bp": -5.018160815569717,
+      "low": -7.500095188621395,
+      "high": -2.536226442518038
+    }
+  ],
+  "walltime": [
+    {
+      "method": "pinn",
+      "gain_vs_myopic": {
+        "mean": 14.365225593110006,
+        "low": 8.692120899915833,
+        "high": 19.859163299613382
+      },
+      "gain_vs_pi200": {
+        "mean": -0.035911692742862655,
+        "low": -0.4384065482755106,
+        "high": 0.458969608875287
+      },
+      "gain_vs_pinn": {
+        "mean": 0.0,
+        "low": 0.0,
+        "high": 0.0
+      },
+      "mean_steps": 4033.3333333333335,
+      "mean_seconds": 30.099527766617637,
+      "mean_refreshes": 0.0,
+      "cap_updates": 0,
+      "total_updates": 0,
+      "target_reached": 3,
+      "target_median_seconds": 20.028069599997252
+    },
+    {
+      "method": "pi200",
+      "gain_vs_myopic": {
+        "mean": 14.401185516907944,
+        "low": 8.708062035581406,
+        "high": 19.942404694615018
+      },
+      "gain_vs_pi200": {
+        "mean": 0.0,
+        "low": 0.0,
+        "high": 0.0
+      },
+      "gain_vs_pinn": {
+        "mean": 0.03591858704983982,
+        "low": -0.45889680493968465,
+        "high": 0.438425769147488
+      },
+      "mean_steps": 4133.333333333333,
+      "mean_seconds": 30.268738300073892,
+      "mean_refreshes": 21.0,
+      "cap_updates": 0,
+      "total_updates": 63,
+      "target_reached": 3,
+      "target_median_seconds": 10.303617200115696
+    },
+    {
+      "method": "pi1000",
+      "gain_vs_myopic": {
+        "mean": 14.472931873236542,
+        "low": 8.753228586046768,
+        "high": 20.007883755617964
+      },
+      "gain_vs_pi200": {
+        "mean": 0.07165182780803174,
+        "low": -0.5732035556396768,
+        "high": 0.7725441987408974
+      },
+      "gain_vs_pinn": {
+        "mean": 0.10758153352978066,
+        "low": -0.8890599729778348,
+        "high": 1.0021318079214134
+      },
+      "mean_steps": 4116.666666666667,
+      "mean_seconds": 30.2816453333168,
+      "mean_refreshes": 5.0,
+      "cap_updates": 0,
+      "total_updates": 15,
+      "target_reached": 3,
+      "target_median_seconds": 20.11047159996815
+    },
+    {
+      "method": "damped",
+      "gain_vs_myopic": {
+        "mean": 14.281939735337387,
+        "low": 8.431276875054534,
+        "high": 19.849405699910104
+      },
+      "gain_vs_pi200": {
+        "mean": -0.1190784971179711,
+        "low": -0.5855105304248357,
+        "high": 0.25996858461709443
+      },
+      "gain_vs_pinn": {
+        "mean": -0.08316864105184507,
+        "low": -0.4649670870263319,
+        "high": 0.2972741812625185
+      },
+      "mean_steps": 3733.3333333333335,
+      "mean_seconds": 30.172200399994228,
+      "mean_refreshes": 19.0,
+      "cap_updates": 0,
+      "total_updates": 57,
+      "target_reached": 3,
+      "target_median_seconds": 20.285091399913654
+    },
+    {
+      "method": "forcing",
+      "gain_vs_myopic": {
+        "mean": 14.46345845892649,
+        "low": 8.826303424221082,
+        "high": 19.871385436434405
+      },
+      "gain_vs_pi200": {
+        "mean": 0.062182406825132354,
+        "low": -0.23701052604893635,
+        "high": 0.32127177611268587
+      },
+      "gain_vs_pinn": {
+        "mean": 0.09810115829271086,
+        "low": -0.4766675151537392,
+        "high": 0.5982160371104475
+      },
+      "mean_steps": 4066.6666666666665,
+      "mean_seconds": 30.13999509997666,
+      "mean_refreshes": 4.0,
+      "cap_updates": 9,
+      "total_updates": 12,
+      "target_reached": 3,
+      "target_median_seconds": 10.323562599951401
+    },
+    {
+      "method": "directional",
+      "gain_vs_myopic": {
+        "mean": 14.612280253121222,
+        "low": 9.059449675177172,
+        "high": 19.90969927279757
+      },
+      "gain_vs_pi200": {
+        "mean": 0.2107918662608288,
+        "low": -0.20151406208443468,
+        "high": 0.7388200023647471
+      },
+      "gain_vs_pinn": {
+        "mean": 0.24670762334366714,
+        "low": -0.21295233794882407,
+        "high": 0.7997936826523625
+      },
+      "mean_steps": 4100.0,
+      "mean_seconds": 30.152141299952444,
+      "mean_refreshes": 5.666666666666667,
+      "cap_updates": 7,
+      "total_updates": 17,
+      "target_reached": 3,
+      "target_median_seconds": 20.26734680007212
+    }
+  ],
+  "actual_wall_time_range": [
+    30.037933300016448,
+    30.37821130012162
+  ],
+  "max_policy_interpolation_rms": 2.5223917420795872e-05,
+  "verification": {
+    "source_and_checkpoint_hashes_match": true,
+    "raw_payoff_recomputed_max_abs_bp": 0.0
+  },
+  "directional_verdict": "The directional test does not establish an endpoint advantage over NPI-200 under this protocol."
+}

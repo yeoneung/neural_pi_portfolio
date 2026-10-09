@@ -1,0 +1,47 @@
+{
+  "study": "boundary_representation_and_frozen_evaluation_robustness",
+  "created": "2026-09-26",
+  "status": "Protocol fixed locally before new outcomes; not externally preregistered",
+  "seeds": [701, 702, 703, 704, 705, 706],
+  "scenarios": [
+    {"name": "baseline", "changes": {}},
+    {"name": "short_horizon", "changes": {"horizon": 1.5}},
+    {"name": "larger_mixture", "changes": {"mixture": 0.6}}
+  ],
+  "model_source": "configs/confirmatory_study.json",
+  "warmup_steps": 200,
+  "evaluation_steps": 1000,
+  "checkpoints": [0, 50, 200, 1000],
+  "primary_comparison": [50, 1000],
+  "network": {"width": 64, "depth": 3},
+  "learning_rate": {"initial": 0.001, "minimum": 0.00001, "cosine_horizon": 10000},
+  "continuous": {
+    "batch_size": 1024, "resample_every": 50,
+    "warmup_stream_offset": 17000, "evaluation_stream_offset": 517000,
+    "probe_seed": 9266701, "probe_full": 8192, "probe_core": 4096,
+    "shape_weight": 1.0, "policy_grid": [41, 81, 81],
+    "mc_seed": 9266702, "mc_paths": 32768, "mc_steps": [480, 960], "mc_fine_steps": 960
+  },
+  "finite": {
+    "representations": ["hard", "split"],
+    "initial_function": "same saved 200-step continuous evaluator; add zero-initialized correction",
+    "frozen_policy": "same saved 200-step feedback, interpolated then rounded to nearest action",
+    "operator": "bounded positive generator with identical stopped boundary sources",
+    "proposal": "exact discrete greedy action, lower index at ties",
+    "time_stream_offset": 627000, "correction_seed_offset": 737000,
+    "grids": [
+      {"name": "coarse", "ny": 41, "nz": 31, "nt": 120, "na": 81, "scenarios": ["baseline", "short_horizon", "larger_mixture"]},
+      {"name": "fine", "ny": 81, "nz": 61, "nt": 240, "na": 161, "scenarios": ["baseline"]}
+    ]
+  },
+  "analysis": {
+    "all_cases_retained": true,
+    "main_event": "full evaluation RMS decreases from 50 to 1000 while proposal CE decreases",
+    "monte_carlo_intervals": "paired conditional 95% and Bonferroni-adjusted across all 18 continuous contrasts; discretization bias excluded",
+    "independence": "six new initialization/optimization seed blocks reused across three scenarios, not eighteen independent seed blocks",
+    "finite_comparison_scope": "within each fixed discretization; lower-wealth trace constraint is relaxed without changing assigned exit payoff",
+    "no_tuning_or_checkpoint_selection": true,
+    "no_timing_claim": true,
+    "continuum_certificate": false
+  }
+}

@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.venv/
+/results/
+/reports/
+*.pt
+*.npz
+*.npy
+*.zip
+*.aux
+*.log
+*.out
+*.pdf
+*.tex
+.DS_Store

@@ -1,0 +1,13 @@
+{
+  "study": "control_set_boundary_sensitivity",
+  "interpretation": "Separate constrained problem; q>=0.05 excludes zero exposure. This is a model ablation, not evidence on the original unconstrained problem.",
+  "model": {"horizon": 3.0, "phi1": 0.8, "kappa": 0.5, "sigma_z": 0.35,
+    "gamma1": 2.0, "gamma2": 5.0, "mixture": 0.3, "rho": -0.7,
+    "qmin": 0.05, "qmax": 0.8, "zmin": -1.5, "zmax": 1.5},
+  "training": {"width": 64, "depth": 3, "batch_size": 1024, "lr": 0.001,
+    "outer_iterations": 50, "steps_per_outer": 200, "resample_every": 50,
+    "validation_points": 2048, "shape_weight": 1.0, "device": "cuda", "dtype": "float32",
+    "lr_schedule": "cosine", "min_lr": 0.00001, "fused_adam": true,
+    "save_steps": [2000,4000,10000], "status": "control-set sensitivity; separate uniformly nondegenerate model"},
+  "variants": [{"name":"floor","seeds":[101,102,103],"methods":["pinn","pi"]}]
+}

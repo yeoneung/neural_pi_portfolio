@@ -1,0 +1,19 @@
+{
+  "python": "3.11.5",
+  "platform": "macOS-15.1-arm64-arm-64bit",
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.13.1",
+    "torch": "2.5.1",
+    "matplotlib": "3.9.2",
+    "pytest": "7.4.4"
+  },
+  "checks": {
+    "unit_tests": "48 passed",
+    "matched_summary_medians_bp": {
+      "single_cpu": -4.490870037282546,
+      "full_correction_cpu": 2.9509664744675757
+    }
+  },
+  "training_repeated_for_export": false
+}

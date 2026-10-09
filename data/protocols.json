@@ -1,0 +1,637 @@
+{
+  "continuous_boundary_followup_20260929": {
+    "created": "2026-09-29",
+    "purpose": "Separate boundary representation sensitivity from evaluation-length sensitivity in continuous-residual neural policy iteration.",
+    "status": "Prespecified follow-up using previously inspected seeds; no independent-replication or runtime superiority claim.",
+    "seeds": [
+      701,
+      702,
+      703,
+      704,
+      705,
+      706
+    ],
+    "scenario": "baseline",
+    "model_source": "configs/confirmatory_study.json",
+    "base_source": "results/npi_focused_strengthening_20260926/continuous/baseline/seed{seed}/step_0.pt",
+    "network": {
+      "width": 64,
+      "depth": 3
+    },
+    "modes": [
+      "hard",
+      "split"
+    ],
+    "device": "cpu",
+    "threads": 2,
+    "batch_size": 1024,
+    "resample_every": 50,
+    "shape_weight": 1.0,
+    "learning_rate": {
+      "initial": 0.001,
+      "minimum": 1e-05,
+      "cosine_horizon": 10000
+    },
+    "frozen_steps": 1000,
+    "frozen_checkpoints": [
+      0,
+      50,
+      200,
+      1000
+    ],
+    "frozen_stream_offset": 517000,
+    "correction_init_offset": 737000,
+    "iteration_steps": 2000,
+    "steps_per_policy": 200,
+    "iteration_checkpoints": [
+      0,
+      200,
+      400,
+      1000,
+      2000
+    ],
+    "iteration_stream_offset": 17000,
+    "probe_seed": 9296101,
+    "probe_full": 4096,
+    "probe_core": 2048,
+    "policy_grid": [
+      41,
+      81,
+      81
+    ],
+    "mc_seed": 9296102,
+    "mc_paths": 32768,
+    "mc_steps": [
+      480,
+      960
+    ],
+    "primary_comparisons": [
+      "frozen: step1000 minus step50 within each representation",
+      "frozen: relaxed minus full at step1000",
+      "iteration: relaxed minus full at step2000"
+    ],
+    "multiplicity": "Bonferroni across 24 primary seedwise comparisons (12 evaluation-length, 6 frozen-representation, 6 repeated-iteration); other steps descriptive.",
+    "interpretation": "Frozen comparisons have exactly the same initial value function and frozen policy, using a fixed base plus an equally sized trainable correction. Repeated iteration starts both representations at the same terminal utility and retains Adam state between policy updates. Relaxing a boundary changes interior parameterization as well as trace restrictions. Neither comparison alone identifies a boundary-only causal effect. The 2000-step iteration is an early-budget test, not a replacement for the earlier 10000-step solver comparison."
+  },
+  "derivative_curves_20260929": {
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "steps": [
+      0,
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      550,
+      600,
+      650,
+      700,
+      750,
+      800,
+      850,
+      900,
+      950,
+      1000
+    ],
+    "meshes": [
+      "fine",
+      "finest"
+    ],
+    "time_points": [
+      0.3,
+      0.6,
+      1.2,
+      1.8,
+      2.4,
+      3.0
+    ],
+    "core_y": [
+      -0.6,
+      -0.5,
+      -0.4,
+      -0.3,
+      -0.2,
+      -0.10000000000000003,
+      0.0,
+      0.09999999999999998,
+      0.19999999999999996,
+      0.29999999999999993,
+      0.3999999999999999,
+      0.4999999999999999,
+      0.6
+    ],
+    "lower_y": [
+      -1.8,
+      -1.7,
+      -1.6
+    ],
+    "z": [
+      -0.3,
+      -0.2,
+      -0.1,
+      0.0,
+      0.09999999999999998,
+      0.19999999999999996,
+      0.3
+    ],
+    "qualification": "Finite-difference estimates of errors relative to two rounded-policy finite references. Mesh difference is a sensitivity diagnostic, not a rigorous error bound. All saved checkpoints and all three previously inspected seeds are included."
+  },
+  "fixed_policy_accuracy_20260926": {
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "inner_steps": [
+      50,
+      200,
+      1000
+    ],
+    "saved_every": 50,
+    "frozen_policy_source": "results/npi_iteration_diagnostic_20260926/pi_seed{seed}/step_200.pt",
+    "optimizer": "fresh Adam, identical state for all saved prefixes",
+    "lr": 0.001,
+    "lr_schedule": "cosine in absolute step 200+j with T_max=10000, independent of selected inner budget",
+    "collocation_seed_offset": 517000,
+    "probe_seed": 9263001,
+    "mc_seed": 9263002,
+    "mc_paths": 32768,
+    "mc_steps": [
+      480,
+      960
+    ],
+    "mc_fine_steps": 960,
+    "policy_grid": [
+      41,
+      81,
+      81
+    ],
+    "empirical_disagreement_multiplier": 2.0,
+    "disagreement_threshold": 0.5,
+    "status": "development intervention; three previously inspected training seeds; no speed claim"
+  },
+  "npi_evaluation_controls_20260929": {
+    "source_protocol": {
+      "created": "2026-09-29",
+      "purpose": "Separate boundary representation sensitivity from evaluation-length sensitivity in continuous-residual neural policy iteration.",
+      "status": "Prespecified follow-up using previously inspected seeds; no independent-replication or runtime superiority claim.",
+      "seeds": [
+        701,
+        702,
+        703,
+        704,
+        705,
+        706
+      ],
+      "scenario": "baseline",
+      "model_source": "configs/confirmatory_study.json",
+      "base_source": "results/npi_focused_strengthening_20260926/continuous/baseline/seed{seed}/step_0.pt",
+      "network": {
+        "width": 64,
+        "depth": 3
+      },
+      "modes": [
+        "hard",
+        "split"
+      ],
+      "device": "cpu",
+      "threads": 2,
+      "batch_size": 1024,
+      "resample_every": 50,
+      "shape_weight": 1.0,
+      "learning_rate": {
+        "initial": 0.001,
+        "minimum": 1e-05,
+        "cosine_horizon": 10000
+      },
+      "frozen_steps": 1000,
+      "frozen_checkpoints": [
+        0,
+        50,
+        200,
+        1000
+      ],
+      "frozen_stream_offset": 517000,
+      "correction_init_offset": 737000,
+      "iteration_steps": 2000,
+      "steps_per_policy": 200,
+      "iteration_checkpoints": [
+        0,
+        200,
+        400,
+        1000,
+        2000
+      ],
+      "iteration_stream_offset": 17000,
+      "probe_seed": 9296101,
+      "probe_full": 4096,
+      "probe_core": 2048,
+      "policy_grid": [
+        41,
+        81,
+        81
+      ],
+      "mc_seed": 9296102,
+      "mc_paths": 32768,
+      "mc_steps": [
+        480,
+        960
+      ],
+      "primary_comparisons": [
+        "frozen: step1000 minus step50 within each representation",
+        "frozen: relaxed minus full at step1000",
+        "iteration: relaxed minus full at step2000"
+      ],
+      "multiplicity": "Bonferroni across 24 primary seedwise comparisons (12 evaluation-length, 6 frozen-representation, 6 repeated-iteration); other steps descriptive.",
+      "interpretation": "Frozen comparisons have exactly the same initial value function and frozen policy, using a fixed base plus an equally sized trainable correction. Repeated iteration starts both representations at the same terminal utility and retains Adam state between policy updates. Relaxing a boundary changes interior parameterization as well as trace restrictions. Neither comparison alone identifies a boundary-only causal effect. The 2000-step iteration is an early-budget test, not a replacement for the earlier 10000-step solver comparison."
+    },
+    "device": "cpu",
+    "optimizer": "Adam, unfused, fresh state",
+    "comparisons": [
+      "CPU single: 1000 minus 50",
+      "GPU single: 1000 minus 50 on common paths",
+      "CPU full correction: 1000 minus 50",
+      "CPU relaxed correction: 1000 minus 50"
+    ],
+    "inference": "Diagnostic reuse of inspected seeds. Bonferroni 24 seedwise length contrasts; other contrasts descriptive.",
+    "damping_seeds": [
+      101,
+      102,
+      103
+    ],
+    "damping_mc_seed": 9297102,
+    "damping_rule": "min(1,RMS_core(p50-q)/RMS_core(p1000-q)); fixed 546 points, no CE tuning",
+    "damping_inference": "Three damped-minus-short contrasts, Bonferroni 3; conditional MC intervals only.",
+    "decomposition": "Exact interior quotient identity; both finite references; steps 0, 50, 1000; cross terms retained."
+  },
+  "npi_focused_strengthening_20260926": {
+    "study": "boundary_representation_and_frozen_evaluation_robustness",
+    "created": "2026-09-26",
+    "status": "Protocol fixed locally before new outcomes; not externally preregistered",
+    "seeds": [
+      701,
+      702,
+      703,
+      704,
+      705,
+      706
+    ],
+    "scenarios": [
+      {
+        "name": "baseline",
+        "changes": {}
+      },
+      {
+        "name": "short_horizon",
+        "changes": {
+          "horizon": 1.5
+        }
+      },
+      {
+        "name": "larger_mixture",
+        "changes": {
+          "mixture": 0.6
+        }
+      }
+    ],
+    "model_source": "configs/confirmatory_study.json",
+    "warmup_steps": 200,
+    "evaluation_steps": 1000,
+    "checkpoints": [
+      0,
+      50,
+      200,
+      1000
+    ],
+    "primary_comparison": [
+      50,
+      1000
+    ],
+    "network": {
+      "width": 64,
+      "depth": 3
+    },
+    "learning_rate": {
+      "initial": 0.001,
+      "minimum": 1e-05,
+      "cosine_horizon": 10000
+    },
+    "continuous": {
+      "batch_size": 1024,
+      "resample_every": 50,
+      "warmup_stream_offset": 17000,
+      "evaluation_stream_offset": 517000,
+      "probe_seed": 9266701,
+      "probe_full": 8192,
+      "probe_core": 4096,
+      "shape_weight": 1.0,
+      "policy_grid": [
+        41,
+        81,
+        81
+      ],
+      "mc_seed": 9266702,
+      "mc_paths": 32768,
+      "mc_steps": [
+        480,
+        960
+      ],
+      "mc_fine_steps": 960
+    },
+    "finite": {
+      "representations": [
+        "hard",
+        "split"
+      ],
+      "initial_function": "same saved 200-step continuous evaluator; add zero-initialized correction",
+      "frozen_policy": "same saved 200-step feedback, interpolated then rounded to nearest action",
+      "operator": "bounded positive generator with identical stopped boundary sources",
+      "proposal": "exact discrete greedy action, lower index at ties",
+      "time_stream_offset": 627000,
+      "correction_seed_offset": 737000,
+      "grids": [
+        {
+          "name": "coarse",
+          "ny": 41,
+          "nz": 31,
+          "nt": 120,
+          "na": 81,
+          "scenarios": [
+            "baseline",
+            "short_horizon",
+            "larger_mixture"
+          ]
+        },
+        {
+          "name": "fine",
+          "ny": 81,
+          "nz": 61,
+          "nt": 240,
+          "na": 161,
+          "scenarios": [
+            "baseline"
+          ]
+        }
+      ]
+    },
+    "analysis": {
+      "all_cases_retained": true,
+      "main_event": "full evaluation RMS decreases from 50 to 1000 while proposal CE decreases",
+      "monte_carlo_intervals": "paired conditional 95% and Bonferroni-adjusted across all 18 continuous contrasts; discretization bias excluded",
+      "independence": "six new initialization/optimization seed blocks reused across three scenarios, not eighteen independent seed blocks",
+      "finite_comparison_scope": "within each fixed discretization; lower-wealth trace constraint is relaxed without changing assigned exit payoff",
+      "no_tuning_or_checkpoint_selection": true,
+      "no_timing_claim": true,
+      "continuum_certificate": false
+    }
+  },
+  "npi_iteration_diagnostic_20260926": {
+    "kind": "exploratory diagnosis, no algorithm or model change",
+    "original": "results/confirmatory_20260925",
+    "replay_seeds": [
+      101,
+      102,
+      103
+    ],
+    "probe_seed": 620260926,
+    "full_points": 8192,
+    "core_points": 4096,
+    "core_bounds": [
+      [
+        0,
+        -0.7,
+        -0.3
+      ],
+      [
+        3,
+        0.7,
+        0.3
+      ]
+    ],
+    "low_exposure_threshold": 0.05,
+    "normalized_curvature_threshold": 0.1,
+    "mc_outers": [
+      0,
+      1,
+      2,
+      5,
+      10,
+      20,
+      50
+    ],
+    "mc_paths": 16384,
+    "mc_steps": [
+      240,
+      480
+    ],
+    "mc_fine_steps": 480,
+    "mc_seed": 9262026,
+    "mc_initial_state": [
+      0.0,
+      0.0
+    ],
+    "policy_grid": [
+      41,
+      81,
+      81
+    ],
+    "intervals": "pointwise paired Monte Carlo; no selection or simultaneous guarantee",
+    "scope": "One original stopped model; existing 10-seed findings already seen. Three replays are not additional independent training seeds. Fixed-budget replay with extra saving, not wall-time evidence."
+  },
+  "npi_matched_derivatives_20260929": {
+    "purpose": "Connect matched CPU performance contrasts to derivative combinations on the same frozen policies.",
+    "status": "Locally specified before these derivative outcomes; reuse of inspected training seeds; diagnostic, not independent confirmation.",
+    "seeds": [
+      701,
+      702,
+      703,
+      704,
+      705,
+      706
+    ],
+    "steps": [
+      0,
+      50,
+      200,
+      1000
+    ],
+    "modes": [
+      "single",
+      "full"
+    ],
+    "network": {
+      "width": 64,
+      "depth": 3
+    },
+    "meshes": {
+      "fine": [
+        121,
+        91,
+        360,
+        241
+      ],
+      "finest": [
+        161,
+        121,
+        480,
+        321
+      ]
+    },
+    "policy_grid": [
+      41,
+      81,
+      81
+    ],
+    "time_points": [
+      0.3,
+      0.6,
+      1.2,
+      1.8,
+      2.4,
+      3.0
+    ],
+    "core_y": [
+      -0.6,
+      -0.5,
+      -0.4,
+      -0.3,
+      -0.2,
+      -0.1,
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6
+    ],
+    "core_z": [
+      -0.3,
+      -0.2,
+      -0.1,
+      0.0,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "model_source": "configs/confirmatory_study.json",
+    "single_source": "results/npi_evaluation_controls_20260929/cpu_single/seed{seed}/step_{step}.pt",
+    "full_source": "results/continuous_boundary_followup_20260929/frozen/seed{seed}/hard/step_{step}.pt",
+    "generator": "bounded positive wide stencil; backward Euler; nearest discrete action with lower index at ties",
+    "reference_policy": "CPU greedy of shared initial function, tabulated once and shared by both evaluation designs and reference grids",
+    "mask": "For each seed, common intersection over both meshes, both representations and all four steps: positive curvatures and interior greedy actions. Also report all-point clipped action error and mask counts.",
+    "statistics": "Three quotient component RMS values, all cross terms, combined error, combined/component RMS ratio, update RMS and eta/S RMS. Report every seed; no expected direction imposed.",
+    "scope": "Deterministic finite-reference diagnostics. Core error norms do not identify CE changes or the optimizer mechanism. Mesh differences are sensitivity measures, not bounds. No new training or CE-based selection.",
+    "threads": 2
+  },
+  "npi_walltime_20260926": {
+    "seeds": [
+      201,
+      202,
+      203
+    ],
+    "methods": [
+      "pinn",
+      "pi200",
+      "pi1000",
+      "damped",
+      "forcing",
+      "directional"
+    ],
+    "nominal_wall_seconds": 30.0,
+    "check_times": [
+      10.0,
+      20.0,
+      30.0
+    ],
+    "minimum_adaptive_inner": 200,
+    "maximum_adaptive_inner": 1000,
+    "adaptive_check_every": 50,
+    "disagreement_multiplier": 2.0,
+    "disagreement_ratio_threshold": 0.5,
+    "forcing_eval_reduction": 0.5,
+    "damping": 0.5,
+    "mc_seed": 9264001,
+    "mc_paths": 32768,
+    "mc_steps": [
+      480,
+      960
+    ],
+    "mc_fine_steps": 960,
+    "policy_grid": [
+      41,
+      81,
+      81
+    ],
+    "observed_target_gain_bp": 10.0,
+    "model": {
+      "horizon": 3.0,
+      "phi1": 0.8,
+      "kappa": 0.5,
+      "sigma_z": 0.35,
+      "gamma1": 2.0,
+      "gamma2": 5.0,
+      "mixture": 0.3,
+      "rho": -0.7,
+      "qmin": -0.8,
+      "qmax": 0.8,
+      "zmin": -1.5,
+      "zmax": 1.5
+    },
+    "training": {
+      "width": 64,
+      "depth": 3,
+      "batch_size": 1024,
+      "lr": 0.001,
+      "outer_iterations": 50,
+      "steps_per_outer": 200,
+      "resample_every": 50,
+      "validation_points": 2048,
+      "shape_weight": 1.0,
+      "device": "cuda",
+      "dtype": "float32",
+      "lr_schedule": "cosine",
+      "min_lr": 1e-05,
+      "fused_adam": true,
+      "save_steps": [
+        2000,
+        4000,
+        10000
+      ],
+      "status": "fixed-protocol study; final checkpoint; no reference-based selection"
+    },
+    "status": "prospective small comparison, new seeds; thresholds fixed without tuning on these seeds; directional proxy not certified",
+    "schedule": "cosine by elapsed fraction of 30 seconds, same for all methods",
+    "timing": "sequential GPU runs, no simultaneous audit jobs; 50-step polling; CPU serialization charged; post-training MC excluded for all methods",
+    "target_scope": "first saved checkpoint with estimated CE gain >=10 bp over myopic; noisy post-hoc measurement, not online stopping"
+  },
+  "npi_walltime_audit_20260926": {
+    "training": "results/npi_walltime_20260926",
+    "paths": 32768,
+    "mc_seed": 9264001,
+    "fine_steps": 960,
+    "checkpoints_at_480": [
+      10,
+      20,
+      30
+    ],
+    "checkpoints_at_960": [
+      30
+    ],
+    "policy_grid": [
+      41,
+      81,
+      81
+    ],
+    "scope": "Post-training audit: 480-step curves and 960-step endpoint refinement, chosen before audit outcomes; common random paths, no online selection"
+  }
+}

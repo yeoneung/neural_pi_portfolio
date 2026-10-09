@@ -1,0 +1,37 @@
+{
+  "study": "cost_and_boundary_revision",
+  "created": "2026-09-25",
+  "development_seeds": {"boundary": [201], "duality": [101]},
+  "boundary": {
+    "model_source": "configs/confirmatory_study.json",
+    "representations": ["hard", "split"],
+    "grids": [
+      {"name": "coarse", "ny": 41, "nz": 31, "nt": 120, "na": 41, "seeds": [301,302,303]},
+      {"name": "fine", "ny": 81, "nz": 61, "nt": 240, "na": 81, "seeds": [301,302,303,304,305]}
+    ],
+    "training": {"width": 64, "depth": 3, "lr": 0.001, "min_lr": 0.00001,
+      "steps": 12000, "device": "cuda", "log_every": 1000, "save_steps": [2000,6000,12000]},
+    "interpretation": "Same stopped problem, finite operator and training time stream; only interior boundary representation differs. Final iterate."
+  },
+  "duality": {
+    "training_seeds": [106,107,108,109,110],
+    "methods": ["pinn", "pi"],
+    "checkpoints": [2000,4000,10000],
+    "calibration_paths": 4096,
+    "screening_paths": 8192,
+    "independent_audit_paths": 65536,
+    "calibration_seed": 81021,
+    "screening_seed": 82021,
+    "audit_seed": 83021,
+    "screening_steps": 480,
+    "audit_steps": [480,960],
+    "fine_steps": 960,
+    "pointwise_alpha": 0.05,
+    "screening_alpha_per_look": 0.016666666666666666,
+    "screening_tolerance_utility": 0.0005,
+    "shadow_exposure_clip": 2.0,
+    "auxiliary_horizon": "factor exit or maturity, common to all controls",
+    "numerical_monitoring": "grid endpoints, overshoot wealth paid",
+    "interpretation": "Retrospective checkpoint screening with independent calibration/audit. Monte Carlo confidence statements exclude time/interpolation bias. No optimal reference enters the dual calculation."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "mixed_utility_pilot",
+  "model": {"horizon": 1.0, "gamma1": 2.0, "gamma2": 4.0, "mixture": 0.1, "rho": -0.4},
+  "reference": {"ny": 61, "nz": 31, "nt": 100, "na": 61},
+  "training": {"width": 64, "depth": 3, "batch_size": 1024, "lr": 0.001, "outer_iterations": 10, "steps_per_outer": 200, "resample_every": 50, "validation_points": 2048, "shape_weight": 1.0, "device": "cuda", "dtype": "float32"},
+  "evaluation": {"tau_points": 11, "y_points": 31, "z_points": 21, "ymin": -0.7, "ymax": 0.7, "zmin": -0.3, "zmax": 0.3},
+  "seeds": [1],
+  "methods": ["pinn", "pi"]
+}
+
