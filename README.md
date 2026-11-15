@@ -32,3 +32,9 @@ python scripts/summarize_results.py
 `data/results/` is read-only recorded output. New computations write to `results/`; numerical report scripts write to `reports/`. Large checkpoints, policy grids, payoff arrays, and finite-reference arrays are not bundled in Git. The CSV summaries can be inspected immediately. Recomputing derivative references and payoff statistics requires either generating the binary inputs in the order below or supplying the corresponding saved experiment directories. Copying CSV files into `results/` does not replace those inputs.
 
 All numerical cases are retained. Monte Carlo intervals condition on trained policies and exclude discretization bias. The compared evaluation representations also differ in their approximation spaces and optimization paths. Mesh refinements are sensitivity checks rather than certified continuum error bounds.
+
+## 100-seed revision results
+
+[`seedwise_100.csv`](seedwise_100.csv) contains all 100 paired training seeds used in the revised principal performance comparison. Each construction-specific `*_gain_bp` column is the certainty-equivalent change from 50 to 1000 frozen-policy evaluation steps, in basis points; `correction_minus_*_bp` columns subtract the corresponding control change from the correction change. These are evaluation-length changes, not final-policy rankings or annual returns.
+
+The `cohort` column identifies the three run stages (12, 24 and 64 initializations). All stages and seeds are retained. The sample was expanded after the earlier analyses; stagewise path sharing and the exploratory integrated bootstrap are described in Supplement S15. This file retains the full precision of the archived integrated analysis.
